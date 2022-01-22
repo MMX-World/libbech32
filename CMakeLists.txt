@@ -12,12 +12,16 @@ endif()
 
 add_subdirectory(libbech32)
 
-enable_testing()
+if(LIBBECH32_BUILD_TESTS)
+  enable_testing()
 
-# Set options so we build googletest and rapidcheck. Other projects that
-# embed libbech32 should set these options to OFF
-option(LIBBECH32_BUILD_GOOGLETEST "Build googletest" ON)
-option(LIBBECH32_BUILD_RAPIDCHECK "Build rapidcheck" ON)
-add_subdirectory(test)
+  # Set options so we build googletest and rapidcheck. Other projects that
+  # embed libbech32 should set these options to OFF
+  option(LIBBECH32_BUILD_GOOGLETEST "Build googletest" ON)
+  option(LIBBECH32_BUILD_RAPIDCHECK "Build rapidcheck" ON)
+  add_subdirectory(test)
+endif()
 
-add_subdirectory(examples)
+if(LIBBECH32_BUILD_EXAMPLES)
+  add_subdirectory(examples)
+endif()
